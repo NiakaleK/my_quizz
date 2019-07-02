@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{category.name}}{% endblock %}
+{% block quiz%}
+<div class="quizz-header">
+    <img src={{category.image}} alt="{{category.name}}">
+    <h1>{{category.name}}</h1>
+</div>
+<div class="quizz">
+    <div class="main-quizz-content">
+        <form method="POST" action="{{ path('answer_quiz', {'category': category.name, 'id':category.id}) }}">
+        {% for question in questions %}        
+            <div class="quizz_question">{{question.question }}</div>
+            <input type= "radio" name="{{question.idQuestion }}" value="{{question.reponseA }}" required>{{question.reponseA }}
+            <input type= "radio" name="{{question.idQuestion }}" value="{{question.reponseB }}" required=>{{question.reponseB }}
+            <input type= "radio" name="{{question.idQuestion }}" value="{{question.reponseC }}" required>{{question.reponseC }}
+            {% endfor %}<br>
+            <input type="submit" value="valider">
+        </form>
+    </div>
+</div>
+{% endblock %}

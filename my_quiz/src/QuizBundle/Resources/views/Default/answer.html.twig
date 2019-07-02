@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block title %}Réponses{% endblock %}
+{% block quiz%}
+<div class="quizz-header">
+    <img src={{category.image}} alt="{{category.name}}">
+    <div>{{category.name}}</div>
+</div>
+<div class="quizz">
+    <div class="main-quizz-content">
+    <section class="answer">
+        <span class="score">Votre score : {{Score}}/10 </span>
+        {% for question in questions %}
+        <div class="quizz_question">{{question.question }}</div>
+        <span class="good_answer">{{question.reponse}}</span>
+        {% endfor %}
+    </section>
+    <section class="userAnswer">
+        <div>Mes réponses</div>
+        {% for userAnswer in userAnswers %}
+            <span class="user_answer">{{userAnswer}}</span><br>
+        {% endfor %}
+    </section>
+    </div>
+</div>
+{% endblock %}

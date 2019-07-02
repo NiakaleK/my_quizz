@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block quiz%}
+<div class="col-md-3 sidebar">
+    <div class="panel-heading">
+        <div class="title">Tous nos quizz</div>
+    </div>
+    <div class="category-list">
+        <ul>
+            {% for category in category %}        
+   			<li><a href="{{ path('selected_quiz', {'category': category.name, 'id':category.id}) }}">{{category.name }}</a></li>
+			{% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

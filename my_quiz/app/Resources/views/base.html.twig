@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}My Quiz{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets 'bundles/FOSUserBundle/css/*' 'bootstrap/css/*' filter='cssrewrite' %} 
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+        <link href="https://fonts.googleapis.com/css?family=Barrio" rel="stylesheet"> 
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+    <nav class="navbar navbar-toggleable-md navbar-dark bg-primary">
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+            <span><h1 class="website_title">My Quiz</h1></span>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a href="/" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('fos_user_registration_register') }}" class="nav-link">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                </li>
+            </ul>
+            <div>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                    <a href="{{ path('fos_user_security_logout') }}" class="nav-link">
+                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                    </a>
+                {% else %}
+                    <a href="{{ path('fos_user_security_login') }}" class="nav-link">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+        {% block body %}
+        {% block content%}{% endblock %}
+        {% block quiz%}{% endblock %}
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+        
+    </body>
+</html>
